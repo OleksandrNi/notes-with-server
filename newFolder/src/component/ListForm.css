@@ -1,0 +1,38 @@
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  margin-bottom: 10px;
+}
+
+.list__title {
+  display: flex;
+  margin: 0;
+  align-self: flex-start;
+  width: 300px;
+  text-align: left;
+}
+
+.list__buttons {
+  display: flex;
+  border: 0.5px solid gray;
+}
+
+.list__button--main {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+}
+
+.list__button--sub {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  width: 70px;
+}
+
+.list__button--main-button {
+  width: 70px;
+}
