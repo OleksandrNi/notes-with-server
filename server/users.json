@@ -1,1 +1,1 @@
-{"users":[{"id":1,"email":"admin@dot.com","password":"1234"},{"id":2,"email":"1@1.1","password":"1"},{"id":3,"email":"2@2.2","password":"2"},{"id":4,"email":"","password":""},{"id":5,"email":"3@3.3","password":"3"},{"id":6,"email":"5@5.5","password":"5"},{"id":7,"email":"6@6.6","password":"6"}]}
+{"users":[{"id":1,"email":"admin@dot.com","password":"1234"}]}

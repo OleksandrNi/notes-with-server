@@ -4,7 +4,6 @@ const jsonServer = require("json-server");
 const jwt = require("jsonwebtoken");
 
 const server = jsonServer.create();
-// const userdb = JSON.parse(fs.readFileSync("./users.json", "utf-8"));
 let postdb = JSON.parse(fs.readFileSync("./db.json", "utf-8"));
 
 
@@ -18,7 +17,7 @@ const expiresIn = "1h";
 
 function createToken(payload) {
   return jwt.sign(payload, SECRET_KEY, {expiresIn});
-}
+};
 
 function isLoginAuthenticated({email, password}) {
   const userdb1 = JSON.parse(fs.readFileSync("./users.json", "utf-8"));
@@ -27,12 +26,12 @@ function isLoginAuthenticated({email, password}) {
       (user) => user.email === email && user.password === password
       )?.id
   );
-}
+};
 
 function isRegisterAuthenticated({email}) {
   const userdb2 = JSON.parse(fs.readFileSync("./users.json", "utf-8"));
   return userdb2.users.findIndex((user) => user.email === email) !== -1;
-}
+};
 
 
 
@@ -41,9 +40,9 @@ server.post("/api/auth/register", (req, res) => {
   if (isRegisterAuthenticated({email})) {
     const status = 401;
     const message = "Email already exist";
-    res.status(status).json({status, message})
+    res.status(status).json({status, message});
     return;
-  }
+  };
 
   fs.readFile("./users.json", (err, data) => {
     if(err) {
@@ -70,8 +69,8 @@ server.post("/api/auth/register", (req, res) => {
     );
   });
 
-  const userId = JSON.parse(fs.readFileSync("./users.json", "utf-8")).users.length + 1
-  postdb.posts.push({"id": userId,"notes":[]})
+  const userId = JSON.parse(fs.readFileSync("./users.json", "utf-8")).users.length + 1;
+  postdb.posts.push({"id": userId,"notes":[]});
 
   const access_token = createToken({email, password});
   res.status(200).json({ access_token, userId, email });
@@ -79,12 +78,12 @@ server.post("/api/auth/register", (req, res) => {
 
 server.post("/api/auth/login", (req, res) =>{
   const {email, password} = req.body;
-  const userId = isLoginAuthenticated({email, password})
+  const userId = isLoginAuthenticated({email, password});
 
   if (!isLoginAuthenticated({email, password})) {
     const status = 401;
     const message = "Incorrect Email or Password";
-    res.status(status).json({status, message})
+    res.status(status).json({status, message});
     return;
   }
   const access_token = createToken({email, password});
@@ -93,21 +92,13 @@ server.post("/api/auth/login", (req, res) =>{
 
 server.post("/posts", (req, res) =>{
   const {notes, userId} = req.body;
-  let response =  postdb.posts.filter(post => post.id === userId).notes
+  let response =  postdb.posts.filter(post => post.id === userId).notes;
 
   const current = postdb.posts.findIndex(post => post.id === userId);
   if (current !== -1) {
-    postdb.posts[current].notes = notes
-    response = postdb.posts[current].notes
+    postdb.posts[current].notes = notes;
+    response = postdb.posts[current].notes;
   } 
-  // else {
-  //   const newPost = {
-  //     "id": userId, 
-  //     notes
-  //   }
-  //   postdb.posts.push(newPost)
-  //   response = newPost.notes
-  // }
 
  
   fs.writeFileSync('./db.json', JSON.stringify(postdb));
@@ -117,8 +108,7 @@ server.post("/posts", (req, res) =>{
 server.get("/posts/:id",function(req, res) {
   const userId = req.params.id;
 
-  const response = postdb.posts[userId - 1].notes
-  // const response = postdb.posts.find(post => post.id === userId)?.notes || [];
+  const response = postdb.posts[userId - 1].notes;
   res.status(200).json({ response });
 });
 
