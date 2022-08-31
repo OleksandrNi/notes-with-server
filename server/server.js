@@ -4,7 +4,7 @@ const jsonServer = require("json-server");
 const jwt = require("jsonwebtoken");
 
 const server = jsonServer.create();
-let postdb = JSON.parse(fs.readFileSync("./db.json", "utf-8"));
+const postdb = JSON.parse(fs.readFileSync("./db.json", "utf-8"));
 
 
 server.use(bodyParser.urlencoded({extended: true}));

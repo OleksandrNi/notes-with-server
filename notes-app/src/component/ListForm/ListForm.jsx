@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import {context} from './Home';
-import InputForm from "./InputForm";
-import SideMenu from "./SideMenu";
+import {context} from '../Home/Home';
+import InputForm from "../InputForm/InputForm";
+import SideMenu from "../SideMenu/SideMenu";
 import Box from '@mui/material/Box';
 import Badge from '@mui/material/Badge';
 import Button from "@mui/material/Button";

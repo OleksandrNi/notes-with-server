@@ -1,14 +1,14 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
-import Home from './component/Home';
-import Login from './component/Login';
-import Header from './component/Header';
-import Register from './component/Register';
+import Home from './component/Home/Home';
+import Login from './component/Login/Login';
+import Header from './component/Header/Header';
+import Register from './component/Register/Register';
 
 function App() {
 const [logoutUser, setLogoutUser] = useState();
-const savedId = () =>  localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login')).userId : '';
+const savedId = localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login')).userId : '';
 const[userId, setUserId] = useState(savedId);
 
   return (

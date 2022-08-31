@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import {context} from './Home';
+import {context} from '../Home/Home';
 import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';

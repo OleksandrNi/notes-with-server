@@ -1,8 +1,8 @@
 import React, { useEffect, useState, createContext, } from 'react';
 import axios from 'axios';
-import Login from './Login';
-import ListForm from './ListForm';
-import InputForm from './InputForm';
+import Login from '../Login/Login';
+import ListForm from '../ListForm/ListForm';
+import InputForm from '../InputForm/InputForm';
 import Box from '@mui/material/Box';
 
 export const context = createContext();
@@ -46,6 +46,6 @@ const Home = ({userId, setUserId, setLogoutUser}) => {
       : <Login userId={userId} setUserId={setUserId} setLogoutUser={setLogoutUser}/>}
     </div>
   )
-}
+};
 
-export default Home
+export default Home;

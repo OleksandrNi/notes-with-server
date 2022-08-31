@@ -4,9 +4,9 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-const SideMenu = ({noteId, deleteNote, notesLength, setNoteIdRemove, setNoteIdAdd, isShowAddSubButton}) => {
+const ITEM_HEIGHT = 48;
 
-  const ITEM_HEIGHT = 48;
+const SideMenu = ({noteId, deleteNote, notesLength, setNoteIdRemove, setNoteIdAdd, isShowAddSubButton}) => {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
