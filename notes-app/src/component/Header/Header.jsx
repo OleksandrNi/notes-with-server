@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
@@ -22,6 +22,7 @@ const Header = ({ logoutUser, setLogoutUser }) => {
   }
 
   const hydrateStateWithLocalStorage = () => {
+    // eslint-disable-next-line no-prototype-builtins
     if (localStorage.hasOwnProperty("login")) {
       let value = localStorage.getItem("login");
       setUserName(JSON.parse(localStorage.getItem('login')).userName);
@@ -30,8 +31,8 @@ const Header = ({ logoutUser, setLogoutUser }) => {
         setLogin(value);
       } catch(e) {
         setLogin("");
-      };
-    };
+      }
+    }
   };
 
   return (

@@ -25,8 +25,8 @@ const Home = ({userId, setUserId, setLogoutUser}) => {
       note.isShowSubnotes = true;
       if (note.notes.length > 0) {
         resartShowSubnotes(note.notes);
-      };
-    };
+      }
+    }
   };
 
   const setNotesAddDb = (notes) => {

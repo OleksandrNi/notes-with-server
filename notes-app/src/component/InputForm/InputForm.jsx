@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import {context} from '../Home/Home';
 import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
@@ -26,7 +26,7 @@ const InputForm = ({ setNotes, noteId}) => {
     } else {
       setNotes([initialNote]);
       setTitle('');
-    };
+    }
   };
 
   const onAddSubNote = () => {
@@ -52,11 +52,11 @@ const InputForm = ({ setNotes, noteId}) => {
         ];
         setTitle('');
         return;
-      };
+      }
       if (note.notes.length > 0) {
         addSubNotes(note.notes);
-      };
-    };
+      }
+    }
   };
 
   return (

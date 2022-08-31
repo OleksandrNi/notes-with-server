@@ -13,7 +13,7 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
-export const Register = ({ setLogoutUser, userId, setUserId }) => {
+export const Register = ({ setLogoutUser , setUserId }) => {
   const[email, setEmail] = useState('');
   const[password, setPassword] = useState('');
   const[error, setError] = useState('');

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {context} from '../Home/Home';
 import InputForm from "../InputForm/InputForm";
 import SideMenu from "../SideMenu/SideMenu";
@@ -25,6 +25,20 @@ const ListForm = ({setNotes, notes}) => {
   const [newTitle, setNewTitle] = useState('');
   const [noteIdUpdate, setNoteIdUpdate] = useState('');
   const [toggleTitleUpdate, setToggleTitleUpdate] = useState(false);
+
+  useEffect(() => {
+    if(noteIdRemove) {
+      removeSubList(noteIdRemove);
+      setNoteIdRemove('');
+    }
+  }, [noteIdRemove]);
+
+  useEffect(() => {
+    if(noteIdAdd) {
+      showAddButton(noteIdAdd);
+      setNoteIdAdd('');
+    }
+  }, [noteIdAdd]);
   
   const deleteNote = (noteId) => {
     const notes = [...JSON.parse(JSON.stringify(notesMain))];
@@ -39,7 +53,7 @@ const ListForm = ({setNotes, notes}) => {
       }
       searchDeleteNote(note.notes, noteId);
     })
-  }
+  };
 
   const moveNoteUp = (noteId) => {
     const notes = [...JSON.parse(JSON.stringify(notesMain))];
@@ -56,7 +70,7 @@ const ListForm = ({setNotes, notes}) => {
       }
       searchMoveNoteUpper(note.notes, noteId);
     })
-  }
+  };
   
   const moveNoteDown = (noteId) => {
     const notes = [...JSON.parse(JSON.stringify(notesMain))];
@@ -77,13 +91,13 @@ const ListForm = ({setNotes, notes}) => {
       }
       searchMoveNoteDown(note.notes, noteId);
     })
-  }
+  };
   
   const showAddButton = () => {
     const newNotes = [...JSON.parse(JSON.stringify(notesMain))];
     toggleAddButton(newNotes);
     setNotes(newNotes);
-  }
+  };
   
   const toggleAddButton = (listOfNotes) => {
     for (let note of listOfNotes) {
@@ -91,19 +105,12 @@ const ListForm = ({setNotes, notes}) => {
         note.isShowAddSubButton = !note.isShowAddSubButton;
       } else {
         note.isShowAddSubButton = false;
-      };
+      }
       if (note.notes.length > 0) {
         toggleAddButton(note.notes);
-      };
-    };
+      }
+    }
   };
-
-  useEffect(() => {
-    if(noteIdAdd) {
-      showAddButton(noteIdAdd);
-      setNoteIdAdd('');
-    };
-  }, [noteIdAdd]);
 
   const removeSubList = () => {
     const newNotes = [...JSON.parse(JSON.stringify(notesMain))];
@@ -118,23 +125,16 @@ const ListForm = ({setNotes, notes}) => {
       }
       if (note.notes.length > 0) {
         chooseSubList(note.notes);
-      };
-    };
+      }
+    }
   };
-
-  useEffect(() => {
-    if(noteIdRemove) {
-      removeSubList(noteIdRemove);
-      setNoteIdRemove('');
-    };
-  }, [noteIdRemove])
 
   const openEditTitle = (noteId, title) => {
     const oldTitle = title;
     setNewTitle(oldTitle);
     setNoteIdUpdate(noteId);
     setToggleTitleUpdate(true);
-  }
+  };
 
   const updateTitle = (listOfNotes) => {
     for (let note of listOfNotes) {
@@ -143,9 +143,9 @@ const ListForm = ({setNotes, notes}) => {
       }
       if (note.notes.length > 0) {
         updateTitle(note.notes);
-      };
-    };
-  }
+      }
+    }
+  };
 
   const updateNoteTitle = () => {
     const newNotes = [...JSON.parse(JSON.stringify(notesMain))];
@@ -169,8 +169,8 @@ const ListForm = ({setNotes, notes}) => {
       } 
       if (note.notes.length > 0) {
         updateShowSubnotes(note.notes, noteId);
-      };
-    };
+      }
+    }
   };
 
   return (
@@ -198,7 +198,7 @@ const ListForm = ({setNotes, notes}) => {
                 </Button>}
 
                 {toggleTitleUpdate && note.id === noteIdUpdate
-                ? <Box component="form" onChange={(e) => {}} onSubmit={(event) => {event.preventDefault()}}>
+                ? <Box component="form" onSubmit={(event) => {event.preventDefault()}}>
                   <TextField variant="standard" value={newTitle} onChange={(e) => {setNewTitle(e.target.value)}}/>
                   <Button color="inherit" size="small" onClick={() => updateNoteTitle()}><TaskAltIcon/></Button>
                 </Box>

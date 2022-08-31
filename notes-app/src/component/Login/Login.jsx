@@ -13,7 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 
-export const Login = ({ setLogoutUser, userId, setUserId }) => {
+export const Login = ({ setLogoutUser, setUserId }) => {
   const[email, setEmail] = useState('');
   const[password, setPassword] = useState('');
   const[error, setError] = useState('');
